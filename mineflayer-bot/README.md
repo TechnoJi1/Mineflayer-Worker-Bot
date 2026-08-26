@@ -13,6 +13,33 @@ An autonomous Minecraft worker bot with survival protection, combat, bounded min
 pnpm --filter @workspace/mineflayer-bot run dev
 ```
 
+## Railway deployment
+
+This repository is a pnpm workspace. Do not use `npm install` or `npm start`.
+
+There are two supported Railway setups:
+
+### Recommended: set the Railway root directory to `mineflayer-bot`
+
+- Root directory: `mineflayer-bot`
+- Install command: `pnpm install --ignore-workspace`
+- Start command: `pnpm start`
+- Node version: 24 or newer
+
+The package includes its own `packageManager` declaration, so Railway can select pnpm even though the bot is nested in the larger repository.
+
+Because `settings.json` is intentionally git-ignored, set the Railway variable `MINECRAFT_SETTINGS_JSON` to the complete JSON configuration instead of committing account credentials. The value should have the same shape as `settings.example.json`.
+
+### Workspace-root setup
+
+If Railway uses the repository root, the included root `railway.json` installs the workspace lockfile and starts:
+
+```bash
+pnpm --filter @workspace/mineflayer-bot start
+```
+
+The bot package remains the only long-running service needed for Railway. The `artifacts/`, `lib/`, and `scripts/` directories are development scaffold content; they are not used by the bot start command.
+
 The bot also exposes:
 
 - `GET /healthz` — returns HTTP 200 only while connected to Minecraft.

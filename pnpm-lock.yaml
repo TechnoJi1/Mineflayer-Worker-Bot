@@ -471,10 +471,10 @@ importers:
         specifier: ^5.0.6
         version: 5.0.6
       '@types/node':
-        specifier: 'catalog:'
+        specifier: ^25.3.3
         version: 25.9.5
       tsx:
-        specifier: 'catalog:'
+        specifier: ^4.21.0
         version: 4.23.1
       typescript:
         specifier: ~5.9.3

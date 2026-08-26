@@ -165,12 +165,16 @@ function validate(settings: BotSettings): void {
 
 export function loadSettings(): BotSettings {
   const path = resolve(process.cwd(), "settings.json");
-  if (!existsSync(path)) {
+  let parsed: Partial<BotSettings>;
+  if (existsSync(path)) {
+    parsed = JSON.parse(readFileSync(path, "utf8")) as Partial<BotSettings>;
+  } else if (process.env.MINECRAFT_SETTINGS_JSON) {
+    parsed = JSON.parse(process.env.MINECRAFT_SETTINGS_JSON) as Partial<BotSettings>;
+  } else {
     throw new Error(
-      "Missing mineflayer-bot/settings.json. Copy settings.example.json to settings.json and configure it first.",
+      "Missing mineflayer-bot/settings.json. Copy settings.example.json to settings.json, or set MINECRAFT_SETTINGS_JSON for Railway.",
     );
   }
-  const parsed = JSON.parse(readFileSync(path, "utf8")) as Partial<BotSettings>;
   const settings = merge(defaultSettings, parsed);
   validate(settings);
   return settings;
