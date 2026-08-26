@@ -1,0 +1,4 @@
+settings.json
+*.log
+dist
+node_modules
