@@ -1,12 +1,12 @@
 {
   "server": {
-    "host": "minecraft.example.com",
-    "port": 25565,
+    "host": "OmegaXsan.aternos.me",
+    "port": 24717,
     "version": false,
     "auth": "offline"
   },
   "bot": {
-    "username": "WorkerBot",
+    "username": "Ronny",
     "password": "",
     "reconnect": {
       "enabled": true,
