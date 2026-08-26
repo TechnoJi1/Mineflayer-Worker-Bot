@@ -1,1 +1,0 @@
-- [Mineflayer plugin runtime interop](plugin-runtime-interop.md) — normalize CommonJS plugin imports before relying on TypeScript's declared named exports.
